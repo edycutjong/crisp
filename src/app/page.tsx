@@ -95,6 +95,24 @@ export default function Home() {
             liabilities on Stellar without unmasking individual balances or
             exposing proprietary reserve totals.
           </p>
+          <div className="flex justify-center gap-4 mt-6">
+            <a
+              href="https://github.com/edycutjong/crisp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-white hover:bg-white/10 transition"
+            >
+              GitHub Repository
+            </a>
+            <a
+              href="/pitch.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl border border-teal-500/30 bg-teal-500/10 text-sm font-semibold text-teal-400 hover:bg-teal-500/20 transition"
+            >
+              View Pitch Deck
+            </a>
+          </div>
         </section>
 
         {/* Global Solvency Status Header */}

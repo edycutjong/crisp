@@ -258,6 +258,14 @@ _Reproduce with the contract's Cargo test suite (`cargo test -- --nocapture`), w
 
 ---
 
+## 📽️ Demo Materials
+
+- **GitHub Repository**: [https://github.com/edycutjong/crisp](https://github.com/edycutjong/crisp)
+- **Live App URL**: [https://crisp.edycu.dev](https://crisp.edycu.dev)
+- **Pitch Deck**: [https://crisp.edycu.dev/pitch.html](https://crisp.edycu.dev/pitch.html)
+
+---
+
 ## 📄 License
 
 [MIT](LICENSE) &copy; 2026 Edy Cu

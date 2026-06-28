@@ -1,0 +1,10 @@
+.next/
+out/
+build/
+node_modules/
+contract/target/
+playwright-report/
+test-results/
+package-lock.json
+Cargo.lock
+CHANGELOG.md

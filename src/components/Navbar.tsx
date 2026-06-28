@@ -29,6 +29,22 @@ export default function Navbar() {
           <a href="#benchmarks" className="hover:text-white transition-colors">
             Gas Benchmarks
           </a>
+          <a
+            href="https://github.com/edycutjong/crisp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="/pitch.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            Pitch Deck
+          </a>
         </nav>
 
         <div className="flex items-center gap-4">
