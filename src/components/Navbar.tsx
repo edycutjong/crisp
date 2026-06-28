@@ -9,22 +9,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {/* Logo SVG */}
           <div className="h-9 w-9 rounded-lg bg-surface-secondary border border-white/10 flex items-center justify-center">
-            <svg
-              className="h-6 w-6 text-brand-primary"
-              viewBox="0 0 512 512"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g transform="translate(128, 112)">
-                <path
-                  d="M 128,0 L 220,38 L 256,128 L 220,218 L 128,256 L 36,218 L 0,128 L 36,38 Z"
-                  stroke="currentColor"
-                  strokeWidth="20"
-                  strokeLinejoin="round"
-                />
-                <circle cx="128" cy="80" r="24" fill="#10b981" />
-              </g>
-            </svg>
+            <img src="/icon.svg" className="h-6 w-6" alt="Crisp Logo" />
           </div>
           <span className="font-display text-xl font-black tracking-tight text-white">
             CRISP
