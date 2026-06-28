@@ -2,7 +2,7 @@
   <img src="docs/icon.svg" alt="Crisp Icon" width="144">
   <h1>Crisp 🔬</h1>
   <p><em>Real-Time Zero-Knowledge Proof-of-Reserves &amp; Solvency Oracle for Stellar Issuers</em></p>
-  <img src="docs/readme-hero.svg" alt="Crisp Banner" width="100%">
+  <img src="docs/readme-hero.png" alt="Crisp Banner" width="100%">
 
   <p><strong>✅ Real Groth16 (BN254) proof verified on Stellar testnet.</strong><br/>
   Reproduce with <code>npm run prove:demo</code> — oracle <code>CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY</code>; a fresh snarkjs proof makes <code>attest_reserves</code> return true on-chain, and tampered inputs are rejected.<br/>
