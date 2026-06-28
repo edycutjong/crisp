@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#115e59"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#02040a"/>
+    </radialGradient>
+    
+    <!-- Teal metallic gradient -->
+    <linearGradient id="scaleBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="50%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+
+    <!-- Glowing teal neon gradient -->
+    <linearGradient id="neonTeal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+
+    <!-- Advanced Glow Filters -->
+    <filter id="epicGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="15" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Rocking balance beam animation around translated origin */
+    @keyframes rock {
+      0% { transform: translate(256px, 180px) rotate(-4deg); }
+      50% { transform: translate(256px, 180px) rotate(4deg); }
+      100% { transform: translate(256px, 180px) rotate(-4deg); }
+    }
+
+    /* Counter-rock to keep pans hanging perfectly vertical */
+    @keyframes counterRock {
+      0% { transform: rotate(4deg); }
+      50% { transform: rotate(-4deg); }
+      100% { transform: rotate(4deg); }
+    }
+
+    /* Expanding shockwave ripple */
+    @keyframes ripple {
+      0% { r: 5px; opacity: 0; }
+      30% { opacity: 0.8; }
+      100% { r: 120px; opacity: 0; }
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.25; }
+      50% { opacity: 0.55; }
+      100% { opacity: 0.25; }
+    }
+
+    .floater {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .rocker {
+      animation: rock 6s ease-in-out infinite;
+      transform-origin: 0px 0px;
+    }
+
+    .counter-rock {
+      animation: counterRock 6s ease-in-out infinite;
+      transform-origin: 0px 0px;
+    }
+
+    .wave {
+      animation: ripple 6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+      transform-origin: 256px 180px;
+    }
+
+    .hud-ring-1 {
+      animation: rotateHUD 25s linear infinite;
+      transform-origin: 256px 256px;
+    }
+    @keyframes rotateHUD {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ambient-glow {
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Base Cyber Background -->
+  <rect width="512" height="512" rx="90" fill="url(#bgGrad)"/>
+  
+  <!-- Outer Cyber Border -->
+  <rect width="504" height="504" x="4" y="4" rx="86" fill="none" stroke="#1e293b" stroke-width="3"/>
+  <rect width="504" height="504" x="4" y="4" rx="86" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.4" filter="url(#epicGlow)"/>
+
+  <!-- Ambient Light Pulse -->
+  <circle cx="256" cy="256" r="180" fill="#14b8a6" opacity="0.3" filter="url(#epicGlow)" class="ambient-glow"/>
+
+  <!-- HUD Rotator 1 -->
+  <g class="hud-ring-1" opacity="0.25">
+    <circle cx="256" cy="256" r="220" fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="100 40 20 40 80 50"/>
+  </g>
+
+  <!-- Ripple wave radiating from balance center pivot -->
+  <circle cx="256" cy="180" r="10" fill="none" stroke="#2dd4bf" stroke-width="3" class="wave" filter="url(#epicGlow)"/>
+
+  <!-- Floating Main Composition -->
+  <g class="floater">
+    <!-- Abstract ZK Shield in Background -->
+    <path d="M156,140 Q256,100 356,140 L356,280 Q256,400 156,280 Z" fill="none" stroke="url(#neonTeal)" stroke-width="8" opacity="0.25" filter="url(#epicGlow)"/>
+
+    <!-- Scale Pillar & Base (Static) -->
+    <path d="M256,120 L256,380 M180,380 L332,380" fill="none" stroke="url(#scaleBody)" stroke-width="26" stroke-linecap="round" filter="url(#epicGlow)"/>
+    <path d="M256,120 L256,380 M180,380 L332,380" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Rocking Balance Beam Group (Origin translated to pivot point 256, 180) -->
+    <g class="rocker">
+      <!-- Beam path relative to pivot (0,0) -->
+      <path d="M-136,0 L136,0" fill="none" stroke="url(#scaleBody)" stroke-width="26" stroke-linecap="round" filter="url(#epicGlow)"/>
+      <path d="M-136,0 L136,0" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      
+      <!-- Pivot point center caps -->
+      <circle cx="0" cy="0" r="14" fill="#ffffff" filter="url(#epicGlow)"/>
+      <circle cx="0" cy="0" r="6" fill="#0d9488"/>
+
+      <!-- Left Scale Pan (Hangs from left end of beam: -136, 0) -->
+      <g transform="translate(-136, 0)">
+        <g class="counter-rock">
+          <path d="M0,0 L-40,90 M0,0 L40,90 M-60,90 L60,90" fill="none" stroke="url(#scaleBody)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#epicGlow)"/>
+          <path d="M0,0 L-40,90 M0,0 L40,90 M-60,90 L60,90" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Glowing reserves check inside pan -->
+          <circle cx="0" cy="100" r="10" fill="#10b981" filter="url(#epicGlow)"/>
+        </g>
+      </g>
+
+      <!-- Right Scale Pan (Hangs from right end of beam: 136, 0) -->
+      <g transform="translate(136, 0)">
+        <g class="counter-rock">
+          <path d="M0,0 L-40,90 M0,0 L40,90 M-60,90 L60,90" fill="none" stroke="url(#scaleBody)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#epicGlow)"/>
+          <path d="M0,0 L-40,90 M0,0 L40,90 M-60,90 L60,90" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Glowing liabilities check inside pan -->
+          <circle cx="0" cy="100" r="10" fill="#06b6d4" filter="url(#epicGlow)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

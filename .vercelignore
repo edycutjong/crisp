@@ -1,0 +1,19 @@
+# Ignore Rust build artifacts and source code
+contracts/
+target/
+Cargo.toml
+Cargo.lock
+
+# Ignore ZK circuits
+circuits/
+
+# Ignore Playwright E2E tests and reports
+e2e/
+test-results/
+playwright-report/
+
+# Ignore local database scripts, migrations, and coverage
+db/
+docs/
+coverage/
+*.tsbuildinfo

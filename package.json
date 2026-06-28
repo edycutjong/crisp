@@ -1,0 +1,73 @@
+{
+  "name": "crisp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format:check": "prettier --check src",
+    "format:write": "prettier --write src",
+    "typecheck": "tsc --noEmit",
+    "test": "npx tsx scripts/run_tests.js",
+    "test:coverage": "npx nyc npx ts-node -O '{\"module\": \"commonjs\", \"moduleResolution\": \"node\"}' scripts/run_tests.js",
+    "audit": "npm audit --audit-level=high || true",
+    "ci": "npm run audit && npm run lint && npm run typecheck && npm run test:coverage",
+    "ci:full": "npm run ci && npm run build && npm run e2e",
+    "e2e": "npx playwright test",
+    "e2e:ui": "npx playwright test --ui",
+    "lighthouse": "npx lhci autorun",
+    "prove:demo": "node scripts/prove-and-verify.mjs",
+    "prove:demo:batch": "node scripts/prove-and-verify-batch.mjs",
+    "prove:demo:oracle": "node scripts/prove-and-verify-oracle.mjs"
+  },
+  "dependencies": {
+    "@stellar/freighter-api": "^6.0.1",
+    "@stellar/stellar-sdk": "^16.0.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "circomlib": "^2.0.5",
+    "circomlibjs": "^0.1.7",
+    "dotenv": "^17.4.2",
+    "lucide-react": "^1.20.0",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "snarkjs": "^0.7.6"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.52.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "license-checker": "^25.0.1",
+    "nyc": "^17.0.0",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/lib/**/*.ts"
+    ],
+    "exclude": [
+      "src/lib/confetti.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ]
+  }
+}

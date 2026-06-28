@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crisp · Pitch Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-display { font-family: 'Outfit', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .slide { display: none; animation: fade .4s ease; }
+    .slide.active { display: flex; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    ::-webkit-scrollbar { width: 0; }
+  </style>
+</head>
+<body class="bg-[#09090b] text-zinc-100 h-full overflow-hidden flex flex-col justify-between">
+  <div class="flex-1 flex items-center justify-center p-6 md:p-10 relative overflow-y-auto">
+
+    <!-- 1 Title -->
+    <div class="slide active max-w-5xl w-full flex-col md:flex-row items-center justify-between gap-12">
+      <div class="flex-1 flex flex-col items-start text-left">
+        <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 01 // Title</span>
+        <h1 class="text-6xl md:text-7xl font-black tracking-tighter leading-none mb-6">CRISP <span class="text-red-500">🛡️</span></h1>
+        <p class="text-2xl font-display text-zinc-200 mb-4">Prove you're solvent. Reveal nothing.</p>
+        <p class="text-zinc-400 text-lg max-w-md">A real-time zero-knowledge oracle that proves a Stellar issuer's <span class="text-red-400">reserves ≥ liabilities</span> on-chain — leaking no customer balance and no true total.</p>
+      </div>
+      <div class="flex-1 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-md w-full relative">
+        <div class="absolute inset-0 bg-linear-to-br from-red-500/10 to-transparent rounded-2xl"></div>
+        <span class="text-[10px] mono text-zinc-500 block mb-3 uppercase">Soroban · BN254 Pairing Check</span>
+        <p class="text-sm mono text-zinc-300 leading-relaxed">attest_reserves(proof, root, L, R, ax, ay)<br><span class="text-emerald-400">→ valid proof ✓ true</span><br><span class="text-red-400">→ tampered ✗ false</span></p>
+        <p class="text-[10px] mono text-zinc-600 mt-4">Stellar Hacks: Real-World ZK · DoraHacks</p>
+      </div>
+    </div>
+
+    <!-- 2 Problem -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 02 // The Problem</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Proof-of-Reserves forces a false choice: trust, or transparency.</h2>
+      <div class="grid md:grid-cols-3 gap-5 max-w-4xl">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 font-display font-bold mb-2">Privacy leakage</p><p class="text-zinc-400 text-sm">Standard PoR unmasks individual customer balances and the issuer's exact total assets to competitors.</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 font-display font-bold mb-2">Retrospective</p><p class="text-zinc-400 text-sm">Audits are a quarter-old snapshot, signed by an accounting firm you also have to trust.</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 font-display font-bold mb-2">No live signal</p><p class="text-zinc-400 text-sm">By publication, the reserves an attestation describes may already be gone. One rumor → a run.</p></div>
+      </div>
+    </div>
+
+    <!-- 3 Solution -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 03 // The Solution</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Continuous, private, on-chain solvency.</h2>
+      <p class="text-zinc-300 text-lg max-w-3xl mb-8">Crisp encodes the whole liability book as a <span class="text-red-400">ZK Merkle-Sum Tree</span> and proves one statement on-chain: <em>"liabilities sum to L, reserves R ≥ L, and I signed this"</em> — revealing no balance and no exact figure.</p>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="border-l-2 border-red-500 pl-4"><p class="font-display font-bold">⚡ Real-time</p><p class="text-zinc-400 text-sm">scrape → prove → attest</p></div>
+        <div class="border-l-2 border-red-500 pl-4"><p class="font-display font-bold">🔒 Zero leakage</p><p class="text-zinc-400 text-sm">balances salted & blinded</p></div>
+        <div class="border-l-2 border-red-500 pl-4"><p class="font-display font-bold">🖊️ Issuer-bound</p><p class="text-zinc-400 text-sm">in-circuit EdDSA signature</p></div>
+        <div class="border-l-2 border-red-500 pl-4"><p class="font-display font-bold">🏆 Inclusion</p><p class="text-zinc-400 text-sm">holder verifies in &lt;1s</p></div>
+      </div>
+    </div>
+
+    <!-- 4 Demo -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 04 // Live Demo & Flow</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">What the judges see</h2>
+      <div class="bg-black border border-zinc-800 rounded-xl p-6 mono text-sm leading-relaxed max-w-3xl">
+        <p class="text-zinc-500">$ npm run prove:demo</p>
+        <p class="text-zinc-300">1. Connect Freighter → Issuer Dashboard</p>
+        <p class="text-zinc-300">2. Scrape holder balances (Horizon)</p>
+        <p class="text-zinc-300">3. Merkle-Sum Tree + Groth16 + EdDSA(root)</p>
+        <p class="text-zinc-300">4. attest_reserves(...) → BN254 pairing on-chain</p>
+        <p class="text-emerald-400">   valid proof   → true ✓</p>
+        <p class="text-red-400">   tampered input → false ✗  (negative control)</p>
+        <p class="text-zinc-300">5. Customer salt → local inclusion check &lt;1s</p>
+      </div>
+      <p class="text-zinc-500 text-sm mt-4 max-w-3xl">Honest status: the hosted web app is a demo sandbox for UX; the load-bearing ZK is <span class="text-red-400 mono">prove:demo</span> + the deployed contract.</p>
+    </div>
+
+    <!-- 5 Architecture -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 05 // Architecture & Tech</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Poseidon + EdDSA in the circuit. BN254 pairing on the ledger.</h2>
+      <div class="grid md:grid-cols-2 gap-4 max-w-4xl">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 mono text-xs uppercase mb-1">ZK Circuit</p><p class="text-zinc-300 text-sm">Circom/Groth16 over bn128 · Merkle-Sum + Poseidon + EdDSA-Poseidon · ~30k constraints · nPublic = 5</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 mono text-xs uppercase mb-1">Verifier</p><p class="text-zinc-300 text-sm">Rust/Soroban 26 · <span class="mono">env.crypto().bn254().pairing_check()</span> runs full Groth16 on-chain (Protocol 25/26) · g1_mul/g1_add MSM</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 mono text-xs uppercase mb-1">Indexer</p><p class="text-zinc-300 text-sm">Stellar Horizon · native balance/trustline scraping, no custom node</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-red-400 mono text-xs uppercase mb-1">App</p><p class="text-zinc-300 text-sm">Next.js 16 / React 19 / Supabase · roots indexed from on-chain events</p></div>
+      </div>
+      <p class="text-zinc-500 text-sm mt-4">A raw-WASM pairing check would exhaust Soroban's CPU budget — Crisp leans on the native host functions exactly where it counts.</p>
+    </div>
+
+    <!-- 6 Market -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 06 // Market & Impact</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Mandated demand, not speculation.</h2>
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl">
+        <div><p class="text-5xl font-black text-red-500 font-display">$200B+</p><p class="text-zinc-400 text-sm mt-2">stablecoin market cap — every dollar a liability someone must prove is backed.</p></div>
+        <div><p class="text-5xl font-black text-red-500 font-display">MiCA</p><p class="text-zinc-400 text-sm mt-2">+ US frameworks + exchange PoR mandates force <em>recurring</em> attestation.</p></div>
+        <div><p class="text-5xl font-black text-red-500 font-display">10×</p><p class="text-zinc-400 text-sm mt-2">better than the audits issuers already pay for — faster, private, continuous.</p></div>
+      </div>
+    </div>
+
+    <!-- 7 Business -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 07 // Business Model</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">How Crisp survives the hackathon</h2>
+      <div class="space-y-4 max-w-3xl">
+        <div class="flex gap-4 items-start"><span class="text-red-500 font-display font-black">01</span><p class="text-zinc-300"><span class="font-bold">Attestation-as-a-Service</span> — SaaS per attestation cadence (hourly/daily/on-demand).</p></div>
+        <div class="flex gap-4 items-start"><span class="text-red-500 font-display font-black">02</span><p class="text-zinc-300"><span class="font-bold">"Crisp Verified ✓" SDK</span> — wallets, exchanges & aggregators embed the badge. Freemium → enterprise.</p></div>
+        <div class="flex gap-4 items-start"><span class="text-red-500 font-display font-black">03</span><p class="text-zinc-300"><span class="font-bold">Compliance data layer</span> — historical solvency roots for auditors & regulators (premium analytics).</p></div>
+        <div class="flex gap-4 items-start"><span class="text-red-500 font-display font-black">04</span><p class="text-zinc-300"><span class="font-bold">Cost moat</span> — sub-cent Soroban verification → attest continuously at a price legacy auditors can't touch.</p></div>
+      </div>
+    </div>
+
+    <!-- 8 Competitive -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 08 // Competitive Edge</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Why Crisp wins</h2>
+      <div class="overflow-x-auto max-w-4xl">
+        <table class="w-full text-sm border-collapse">
+          <thead><tr class="text-zinc-500 mono text-xs uppercase"><th class="text-left p-3"></th><th class="p-3">Big-4 audit</th><th class="p-3">On-chain Merkle PoR</th><th class="p-3 text-red-400">Crisp</th></tr></thead>
+          <tbody class="text-zinc-300">
+            <tr class="border-t border-zinc-800"><td class="p-3 text-left text-zinc-400">Real-time</td><td class="p-3 text-center">❌</td><td class="p-3 text-center">⚠️</td><td class="p-3 text-center">✅</td></tr>
+            <tr class="border-t border-zinc-800"><td class="p-3 text-left text-zinc-400">Privacy</td><td class="p-3 text-center">⚠️ NDA</td><td class="p-3 text-center">❌</td><td class="p-3 text-center">✅</td></tr>
+            <tr class="border-t border-zinc-800"><td class="p-3 text-left text-zinc-400">Trustless</td><td class="p-3 text-center">❌</td><td class="p-3 text-center">✅</td><td class="p-3 text-center">✅</td></tr>
+            <tr class="border-t border-zinc-800"><td class="p-3 text-left text-zinc-400">Issuer-bound</td><td class="p-3 text-center">PDF sig</td><td class="p-3 text-center">❌ anyone posts</td><td class="p-3 text-center text-red-400">✅ in-circuit EdDSA</td></tr>
+            <tr class="border-t border-zinc-800"><td class="p-3 text-left text-zinc-400">Cost / attestation</td><td class="p-3 text-center">$$$$</td><td class="p-3 text-center">gas</td><td class="p-3 text-center">sub-cent</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-zinc-500 text-sm mt-4">Most ZK PoR demos let <em>anyone</em> post a root. Crisp's BabyJubjub EdDSA binds the proof to the issuer's key.</p>
+    </div>
+
+    <!-- 9 Traction -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 09 // Traction & Validation</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Built & verified, not vaporware</h2>
+      <div class="grid md:grid-cols-2 gap-4 max-w-4xl">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-emerald-400 font-display font-bold mb-1">✅ Verifies on testnet</p><p class="text-zinc-400 text-sm">Real Groth16 proof accepted on-chain — reproduce with <span class="mono text-red-400">npm run prove:demo</span>.</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-emerald-400 font-display font-bold mb-1">✅ Negative control</p><p class="text-zinc-400 text-sm">Tampered inputs rejected on-chain — verification is real, not theater.</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-emerald-400 font-display font-bold mb-1">✅ Hardened circuit</p><p class="text-zinc-400 text-sm">Added in-circuit EdDSA identity binding: 21,908 → ~30,000 constraints.</p></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5"><p class="text-emerald-400 font-display font-bold mb-1">✅ Measured cost</p><p class="text-zinc-400 text-sm">Pairing check ≈ 22.4M CPU (~22% budget), ~120KB mem; G1 op ≈ 14,488 CPU.</p></div>
+      </div>
+    </div>
+
+    <!-- 10 Roadmap -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 10 // Roadmap</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">30 / 60 / 90 days</h2>
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl">
+        <div class="border-t-2 border-red-500 pt-4"><p class="mono text-red-400 text-sm mb-2">30 DAYS</p><p class="text-zinc-300 text-sm">Redeploy BN254 + EdDSA contract; stellar.expert verified + live attestation explorer.</p></div>
+        <div class="border-t-2 border-zinc-700 pt-4"><p class="mono text-zinc-400 text-sm mb-2">60 DAYS</p><p class="text-zinc-300 text-sm">In-browser proving (snarkjs WASM), multi-asset reserve baskets, distributed scrapers.</p></div>
+        <div class="border-t-2 border-zinc-700 pt-4"><p class="mono text-zinc-400 text-sm mb-2">90 DAYS</p><p class="text-zinc-300 text-sm">Multi-issuer registry + regulator read-API; first design-partner issuer; badge SDK.</p></div>
+      </div>
+    </div>
+
+    <!-- 11 Team -->
+    <div class="slide max-w-5xl w-full flex-col text-left">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-4">Slide 11 // Team</span>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Engineering leverage</h2>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-3xl">
+        <p class="text-2xl font-display font-bold mb-2">Edy Cu</p>
+        <p class="text-red-400 mono text-sm mb-4">full-stack + applied-ZK engineer</p>
+        <p class="text-zinc-300">Solo-built the entire stack — Circom circuits (Merkle-Sum + Poseidon + EdDSA), the Rust/Soroban verifier, the Horizon scraper, and the Next.js dashboard. One of <span class="text-red-400">five</span> real on-chain ZK products shipped for this hackathon.</p>
+      </div>
+    </div>
+
+    <!-- 12 Ask -->
+    <div class="slide max-w-4xl w-full flex-col items-center text-center">
+      <span class="text-xs mono tracking-widest text-red-500 uppercase mb-6">Slide 12 // The Ask</span>
+      <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-6">Trust is a rumor.<br><span class="text-red-500">Proof is math.</span></h2>
+      <p class="text-zinc-300 text-lg max-w-2xl mb-8">Crisp makes solvency a continuous, private, on-chain fact — the missing primitive for every regulated issuer on Stellar.</p>
+      <div class="mb-8 bg-black border border-zinc-800 rounded-xl px-6 py-4 mono text-sm text-red-400">npm run prove:demo &nbsp;<span class="text-zinc-500"># go verify it yourself</span></div>
+
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-display font-bold">
+        <a href="https://github.com/edycutjong/crisp" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-red-500 rounded-xl text-zinc-300 hover:text-white transition-all">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://crisp.edycu.dev" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-red-500 rounded-xl text-zinc-300 hover:text-white transition-all">
+          🚀 Live Demo
+        </a>
+        <a href="https://youtu.be/placeholder" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-red-500 rounded-xl text-zinc-300 hover:text-white transition-all">
+          🎬 Demo Video
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="h-16 border-t border-zinc-900 bg-[#09090b]/80 backdrop-blur-lg flex items-center justify-between px-6 md:px-8 z-10 shrink-0">
+    <div class="text-[10px] mono text-zinc-600 uppercase">Crisp · Stellar Testnet · ZK Proof-of-Reserves</div>
+    <div class="flex items-center gap-4">
+      <button onclick="prevSlide()" class="px-4 py-1.5 border border-zinc-800 hover:border-red-500 rounded-lg text-xs mono text-zinc-400 hover:text-red-400 transition-all select-none">PREV</button>
+      <span id="slide-num" class="text-xs mono text-red-400">1 / 12</span>
+      <button onclick="nextSlide()" class="px-4 py-1.5 border border-zinc-800 hover:border-red-500 rounded-lg text-xs mono text-zinc-400 hover:text-red-400 transition-all select-none">NEXT</button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slideNum = document.getElementById('slide-num');
+    function updateSlides() {
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      slideNum.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+    function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlides(); } }
+    function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateSlides(); } }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') nextSlide();
+    });
+  </script>
+</body>
+</html>

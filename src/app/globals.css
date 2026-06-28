@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ─── CRISP Design System ─── Scientific Lab / Data Observatory ─── */
+
+@theme {
+  --color-bg-primary: #030712;
+  --color-bg-secondary: #0a0f1a;
+  --color-surface-primary: rgba(6, 78, 59, 0.08);
+  --color-surface-secondary: rgba(17, 24, 39, 0.55);
+  --color-brand-primary: #14b8a6;
+  --color-brand-accent: #10b981;
+  --color-brand-rose: #f43f5e;
+  --color-brand-rose-glow: rgba(244, 63, 94, 0.15);
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-border-color: #1f2937;
+
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ─── CRISP Signature: Merkle-Tree Data Grid ─── */
+.crisp-grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(20, 184, 166, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(16, 185, 129, 0.04) 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(20, 184, 166, 0.03) 59px,
+      rgba(20, 184, 166, 0.03) 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 59px,
+      rgba(20, 184, 166, 0.03) 59px,
+      rgba(20, 184, 166, 0.03) 60px
+    );
+}
+
+/* Floating Merkle node dots */
+.crisp-nodes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.crisp-nodes::before,
+.crisp-nodes::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(20, 184, 166, 0.5);
+  box-shadow:
+    120px 80px 0 rgba(20, 184, 166, 0.3),
+    350px 200px 0 rgba(16, 185, 129, 0.25),
+    600px 150px 0 rgba(20, 184, 166, 0.2),
+    900px 300px 0 rgba(16, 185, 129, 0.3),
+    200px 400px 0 rgba(20, 184, 166, 0.15),
+    750px 500px 0 rgba(16, 185, 129, 0.2),
+    400px 600px 0 rgba(20, 184, 166, 0.25),
+    1100px 200px 0 rgba(16, 185, 129, 0.15);
+  animation: crisp-float 20s ease-in-out infinite alternate;
+}
+
+.crisp-nodes::after {
+  animation-delay: -10s;
+  animation-direction: alternate-reverse;
+  box-shadow:
+    80px 120px 0 rgba(16, 185, 129, 0.2),
+    300px 350px 0 rgba(20, 184, 166, 0.3),
+    550px 100px 0 rgba(16, 185, 129, 0.25),
+    800px 250px 0 rgba(20, 184, 166, 0.15),
+    150px 500px 0 rgba(16, 185, 129, 0.3),
+    650px 400px 0 rgba(20, 184, 166, 0.2),
+    950px 150px 0 rgba(16, 185, 129, 0.25),
+    1000px 450px 0 rgba(20, 184, 166, 0.15);
+}
+
+@keyframes crisp-float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-30px) translateX(15px);
+  }
+}
+
+/* Data stream scanline */
+.crisp-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(20, 184, 166, 0.4),
+    transparent
+  );
+  animation: crisp-scan 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes crisp-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* ─── Shared Utilities ─── */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary) 0%,
+    var(--color-brand-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-teal {
+  box-shadow: 0 0 30px 0 rgba(20, 184, 166, 0.15);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 30px 0 rgba(16, 185, 129, 0.15);
+}
