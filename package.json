@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/edycutjong/crisp/issues"
   },
-  "homepage": "https://github.com/edycutjong/crisp#readme",
+  "homepage": "https://crisp.edycu.dev",
   "engines": {
     "node": ">=22.0.0"
   },
