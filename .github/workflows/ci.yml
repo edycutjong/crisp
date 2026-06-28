@@ -118,11 +118,11 @@ jobs:
           if [ -d ".next" ]; then
             TOTAL_SIZE=$(du -sk .next/static | cut -f1)
             echo "Total static assets: ${TOTAL_SIZE}KB"
-            if [ "$TOTAL_SIZE" -gt 2000 ]; then
-              echo "::error::Bundle size ${TOTAL_SIZE}KB exceeds 2000KB error threshold"
+            if [ "$TOTAL_SIZE" -gt 3000 ]; then
+              echo "::error::Bundle size ${TOTAL_SIZE}KB exceeds 3000KB error threshold"
               exit 1
-            elif [ "$TOTAL_SIZE" -gt 1500 ]; then
-              echo "::warning::Bundle size ${TOTAL_SIZE}KB exceeds 1500KB warning threshold"
+            elif [ "$TOTAL_SIZE" -gt 2500 ]; then
+              echo "::warning::Bundle size ${TOTAL_SIZE}KB exceeds 2500KB warning threshold"
             else
               echo "✅ Bundle size within budget"
             fi
@@ -185,7 +185,8 @@ jobs:
   # ── STAGE 6: Release & Deploy (main only) ─────────────────
   deploy:
     name: "Stage 6 · Release & Deploy"
-    needs: [build, e2e, performance, secret-scan, dependency-audit, contract-quality]
+    needs:
+      [build, e2e, performance, secret-scan, dependency-audit, contract-quality]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:

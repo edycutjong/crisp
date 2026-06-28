@@ -13,11 +13,14 @@ test.describe("Crisp Demo Mode Smoke Test", () => {
     await expect(heading).toContainText("Solvency. Proven in Real-Time.");
 
     // Verify specific sections exist
-    const publicVerificationHeader = page.getByRole("heading", { name: "Public Verification Panel" });
+    const publicVerificationHeader = page.getByRole("heading", {
+      name: "Public Verification Panel",
+    });
     await expect(publicVerificationHeader).toBeVisible();
 
-    const issuerDashboardHeader = page.getByRole("heading", { name: "Issuer Attestation Panel" });
+    const issuerDashboardHeader = page.getByRole("heading", {
+      name: "Issuer Attestation Panel",
+    });
     await expect(issuerDashboardHeader).toBeVisible();
   });
 });
-

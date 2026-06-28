@@ -8,13 +8,18 @@ test.describe("Crisp Layout Responsiveness Tests", () => {
   ];
 
   for (const viewport of viewports) {
-    test(`should render correctly on ${viewport.name} viewport`, async ({ page }) => {
-      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    test(`should render correctly on ${viewport.name} viewport`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
       await page.goto("/");
 
       // Ensure main elements are visible
       await expect(page.locator("h1")).toBeVisible();
-      
+
       // Check that there is no horizontal scroll on the document body
       const overflowX = await page.evaluate(() => {
         return window.innerWidth < document.documentElement.scrollWidth;

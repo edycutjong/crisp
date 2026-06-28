@@ -10,20 +10,20 @@
 
   <br/>
 
-  [![Live Demo](https://img.shields.io/badge/🚀_Live-Demo-06b6d4?style=for-the-badge)](https://crisp.edycu.dev)
-  [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://crisp.edycu.dev/pitch.html)
-  [![Demo Video](https://img.shields.io/badge/🎬_Demo-Video-ef4444?style=for-the-badge)](https://youtu.be/placeholder)
-  [![Built for Stellar Hacks](https://img.shields.io/badge/DoraHacks-Stellar_Hacks_ZK-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/stellar-hacks-zk)
+[![Live Demo](https://img.shields.io/badge/🚀_Live-Demo-06b6d4?style=for-the-badge)](https://crisp.edycu.dev)
+[![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://crisp.edycu.dev/pitch.html)
+[![Demo Video](https://img.shields.io/badge/🎬_Demo-Video-ef4444?style=for-the-badge)](https://youtu.be/placeholder)
+[![Built for Stellar Hacks](https://img.shields.io/badge/DoraHacks-Stellar_Hacks_ZK-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/stellar-hacks-zk)
 
   <br/>
 
-  ![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat&logo=next.js)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-  ![Stellar](https://img.shields.io/badge/Stellar-black?style=flat&logo=stellar&logoColor=white)
-  [![Contracts](https://img.shields.io/badge/Contracts-Soroban%2FRust-orange?logo=rust&logoColor=white)](https://github.com/edycutjong/crisp/tree/main/contracts)
-  ![Circom](https://img.shields.io/badge/ZK_Prover-Circom%2FGroth16-8b5cf6?style=flat&logo=web3)
-  [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
-  [![CI](https://github.com/edycutjong/crisp/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/crisp/actions/workflows/ci.yml)
+![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Stellar](https://img.shields.io/badge/Stellar-black?style=flat&logo=stellar&logoColor=white)
+[![Contracts](https://img.shields.io/badge/Contracts-Soroban%2FRust-orange?logo=rust&logoColor=white)](https://github.com/edycutjong/crisp/tree/main/contracts)
+![Circom](https://img.shields.io/badge/ZK_Prover-Circom%2FGroth16-8b5cf6?style=flat&logo=web3)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/edycutjong/crisp/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/crisp/actions/workflows/ci.yml)
 
 </div>
 
@@ -32,12 +32,14 @@
 ## 💡 The Problem & Solution
 
 Stablecoin issuers (USDC, EURC) hold billions in custodian reserves. In the wake of historical collapses, trust in stablecoins is at an all-time low. To restore trust, issuers publish Proof-of-Reserves (PoR). However:
+
 1. **Privacy Leakage**: Standard PoR unmasks individual customer balances and total company assets to competitors and the public.
 2. **Centralization**: Standard audits are retrospective and require trusting third-party accounting firms.
 
 **Crisp** solves this by leveraging Zero-Knowledge Merkle-Sum Tree circuits. It allows Stellar stablecoin issuers to continuously prove that their off-chain bank reserves exceed their total liabilities ($R \ge L$) without exposing individual customer balances or revealing the exact total reserve amount.
 
 ### Key Features:
+
 - ⚡ **Real-Time Audits**: Instant balance scraping and proof generation.
 - 🔒 **Zero Leakage**: All customer balances are blinded with private salts.
 - 🏆 **Customer Inclusion Checks**: Customers verify their balance was included in the solvency pool in under 1 second client-side.
@@ -51,6 +53,7 @@ Stablecoin issuers (USDC, EURC) hold billions in custodian reserves. In the wake
 </div>
 
 > **Solvency Attestation Workflow**:
+>
 > 1. Connect Freighter Wallet inside the Issuer Dashboard.
 > 2. Submit reserve balances $\rightarrow$ off-chain engine scrapes balances &amp; generates ZK proof.
 > 3. Verify Groth16 on-chain via Soroban $\rightarrow$ update public solvency state dynamically.
@@ -59,7 +62,6 @@ Stablecoin issuers (USDC, EURC) hold billions in custodian reserves. In the wake
 ---
 
 ## 🏗️ Architecture & Tech Stack
-
 
 ```mermaid
 sequenceDiagram
@@ -98,36 +100,41 @@ graph TD
     VKey -->| Rust / cargo build | Soroban
 ```
 
-| Layer | Technology | Rationale |
-|---|---|---|
-| **Frontend** | Next.js 16 (App Router), React 19 | Standard high-performance UI. |
-| **ZK Circuits** | Circom (Groth16) | Standard low-level constraint ZK engine. |
-| **Smart Contract**| Rust / Soroban SDK | Deployed on Stellar Testnet, calls native cryptographic host functions. |
-| **Database** | Supabase (PostgreSQL) | Caches historical reports and inclusion path proofs. |
+| Layer              | Technology                        | Rationale                                                               |
+| ------------------ | --------------------------------- | ----------------------------------------------------------------------- |
+| **Frontend**       | Next.js 16 (App Router), React 19 | Standard high-performance UI.                                           |
+| **ZK Circuits**    | Circom (Groth16)                  | Standard low-level constraint ZK engine.                                |
+| **Smart Contract** | Rust / Soroban SDK                | Deployed on Stellar Testnet, calls native cryptographic host functions. |
+| **Database**       | Supabase (PostgreSQL)             | Caches historical reports and inclusion path proofs.                    |
 
 ---
 
 ## 🏆 Sponsor Tracks Targeted
 
 ### Stellar Hacks: Real-World ZK
+
 1. **Native BN254 Pairing Check (`env.crypto().bn254().pairing_check()`) — Protocol 25/26**: The load-bearing primitive — `attest_reserves` runs the full Groth16 pairing equation on-chain with Stellar's native BN254 host functions, so solvency is verified by the ledger itself instead of trusted off-chain. Performing this in raw WASM would exhaust Soroban's CPU budget.
 2. **Native BN254 G1 Operations (`bn254().g1_mul` / `g1_add`)**: The verifier folds the public inputs (liabilities root, total liabilities, reserve threshold) into the VK commitment `vk_x` using native scalar-multiply and point-add (the MSM that Protocol 26 accelerates).
-3. **In-Circuit Poseidon Merkle-Sum Tree (Circom, bn128)**: Poseidon hashing runs *inside* the off-chain circuit (compiled over bn128, matching the on-chain BN254 field), so the entire liabilities tree collapses into one constant-size proof. On-chain we verify a single pairing — independent of account count.
+3. **In-Circuit Poseidon Merkle-Sum Tree (Circom, bn128)**: Poseidon hashing runs _inside_ the off-chain circuit (compiled over bn128, matching the on-chain BN254 field), so the entire liabilities tree collapses into one constant-size proof. On-chain we verify a single pairing — independent of account count.
 4. **Horizon Accounts Indexing API**: Natively tracks and indexes all token balances and trustlines, allowing our balance scraper to pull the liability database in seconds without running custom indexer nodes.
 5. **Stellar Contract Events (`env.events().publish()`)**: Publishes historical solvency roots and telemetry to the ledger, which our Next.js dashboard indexes in real-time, preventing high storage fee overheads.
 
 ## ⛓️ Smart Contract Specifications
 
 ### Compiler Requirements
+
 Smart contracts target the **`wasm32v1-none`** compilation target (using `cargo build --target wasm32v1-none` or equivalent Soroban build parameters) under Rust 1.82+ to ensure compatibility with Stellar's Protocol 25/26 BN254 EC pairing host functions.
 
 ### Deployed Contract Details
+
 - **Oracle Contract:** `CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY`
 
 ### Contract Endpoints & Parameters
 
 #### CrispOracle
+
 Maintains trusted solvency verifications and allowlisted providers:
+
 - `initialize(env: Env, admin: Bytes)`: Initialize contract with admin identity.
 - `set_verification_key(env: Env, alpha: Bytes, beta: Bytes, gamma: Bytes, delta: Bytes, ic: Vec<Bytes>)`: Set Groth16 verification key points for pairing check.
 - `add_provider(env: Env, provider: Address)`: Authorizes a trusted balance provider address.
@@ -136,19 +143,19 @@ Maintains trusted solvency verifications and allowlisted providers:
 
 ### 🔭 Roadmap — designed, NOT deployed on the contract above
 
-> **Honest status:** the items below are **design-stage** and are intentionally *not* part of the deployed v1 oracle. The `aggregator.circom` source exists but is **not compiled, proven, or wired**, and the local `attest_batch_v3` performs only structural checks (issuer count, the `R_total ≥ L_total` invariant, replay protection) — it does **not** yet run a cryptographic batch pairing check. Do not treat it as production ZK.
+> **Honest status:** the items below are **design-stage** and are intentionally _not_ part of the deployed v1 oracle. The `aggregator.circom` source exists but is **not compiled, proven, or wired**, and the local `attest_batch_v3` performs only structural checks (issuer count, the `R_total ≥ L_total` invariant, replay protection) — it does **not** yet run a cryptographic batch pairing check. Do not treat it as production ZK.
 
 - `attest_batch_v3(...)` **[planned v3]** — Multi-issuer aggregated solvency: a single batch Groth16 proof over N issuers (min 2), the system-wide invariant $R_{total} \ge L_{total}$, per-issuer root registration, and batch replay protection. Backing circuit `circuits/aggregator.circom` is design-stage only.
-
-
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js ≥ 20
 - Cargo / Rust (to run smart contract test suites)
 
 ### Installation
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/edycutjong/crisp.git
@@ -162,7 +169,7 @@ Maintains trusted solvency verifications and allowlisted providers:
    ```bash
    cp .env.example .env.local
    ```
-   *Note: In development and test environments, if Supabase keys are not populated, the application will automatically fall back to an in-memory database pre-seeded with mock profiles.*
+   _Note: In development and test environments, if Supabase keys are not populated, the application will automatically fall back to an in-memory database pre-seeded with mock profiles._
 4. Run Next.js dashboard locally:
    ```bash
    npm run dev
@@ -173,6 +180,7 @@ Maintains trusted solvency verifications and allowlisted providers:
 ## 🧪 Testing & CI
 
 ### 6-Stage CI/CD Pipeline
+
 Quality $\rightarrow$ Security $\rightarrow$ Build $\rightarrow$ E2E Tests $\rightarrow$ Performance $\rightarrow$ Deploy Gate
 
 ```bash
@@ -193,16 +201,16 @@ npm run lighthouse    # Lighthouse CI metrics audit
 make security-scan    # Vulnerability audit + License compliance audit
 ```
 
-| Layer | Tool | Status |
-|---|---|---|
-| Code Quality | ESLint + TypeScript + Prettier | ✅ |
-| Unit Testing (JS) | Custom runner (100+ assertions) | ✅ |
-| Unit Testing (Rust) | Cargo test (Soroban smart contract) | ✅ |
-| E2E Testing | Playwright (3 suites, responsive, solvency) | ✅ |
-| Security (SAST) | CodeQL | ✅ |
-| Security (SCA) | Dependabot + npm audit | ✅ |
-| Secret Scanning | TruffleHog | ✅ |
-| Performance | Lighthouse CI | ✅ |
+| Layer               | Tool                                        | Status |
+| ------------------- | ------------------------------------------- | ------ |
+| Code Quality        | ESLint + TypeScript + Prettier              | ✅     |
+| Unit Testing (JS)   | Custom runner (100+ assertions)             | ✅     |
+| Unit Testing (Rust) | Cargo test (Soroban smart contract)         | ✅     |
+| E2E Testing         | Playwright (3 suites, responsive, solvency) | ✅     |
+| Security (SAST)     | CodeQL                                      | ✅     |
+| Security (SCA)      | Dependabot + npm audit                      | ✅     |
+| Secret Scanning     | TruffleHog                                  | ✅     |
+| Performance         | Lighthouse CI                               | ✅     |
 
 ---
 
@@ -229,12 +237,12 @@ dorahacks-stellarzh-crisp/
 
 On-chain CPU instruction costs and memory consumption measured using `soroban-sdk` testutils:
 
-| Operation | CPU Instructions | Memory Bytes | % of Limit |
-|---|---|---|---|
-| BN254 G1 Add / Mul (per op) | ~14,488 | 0 | <0.02% |
-| Groth16 Verify — full BN254 pairing check (`attest_reserves`) | ~22,450,000 | ~120,400 | ~22.4% |
+| Operation                                                     | CPU Instructions | Memory Bytes | % of Limit |
+| ------------------------------------------------------------- | ---------------- | ------------ | ---------- |
+| BN254 G1 Add / Mul (per op)                                   | ~14,488          | 0            | <0.02%     |
+| Groth16 Verify — full BN254 pairing check (`attest_reserves`) | ~22,450,000      | ~120,400     | ~22.4%     |
 
-*Reproduce with the contract's Cargo test suite (`cargo test -- --nocapture`), which prints the Soroban `budget()` CPU/memory for the real on-chain BN254 pairing check. Poseidon runs in-circuit (off-chain) and has no on-chain instruction cost.*
+_Reproduce with the contract's Cargo test suite (`cargo test -- --nocapture`), which prints the Soroban `budget()` CPU/memory for the real on-chain BN254 pairing check. Poseidon runs in-circuit (off-chain) and has no on-chain instruction cost._
 
 ---
 
@@ -244,9 +252,9 @@ On-chain CPU instruction costs and memory consumption measured using `soroban-sd
 - [x] Phase 2: Soroban `attest_reserves` contract with native BN254 pairing check
 - [x] Phase 3: Merkle sum tree client-side library and browser proving
 - [x] Phase 4: Freighter wallet integration and Next.js dashboard
-- [x] Phase 5: Registered-oracle reserve attestation (v2) with Ed25519 signature verification — **shipped & verified on-chain.** `set_oracle_key` registers an authorized reserve-oracle Ed25519 key; `verify_oracle_sig` / `attest_reserves_v2` verify the oracle's signature over `reserves_threshold ‖ kyc_root` against that **registered** key (closing the prior "caller supplies its own key" gap) on testnet contract `CBBO72ROVZVAC2KWYZOEN6PH2GAGFFIFFDO35FV5PGM3QWDEN4EO45PU`. Reproduce: `npm run prove:demo:oracle` (registered-key sig → `true`, tampered → rejected). Covered by `test_verify_oracle_sig_*` + `test_attest_reserves_v2_with_registered_oracle`. *Production transport: the oracle key would be operated by a TLSNotary notary that witnesses the custodian balance — that TLS-transcript layer is out of scope and not implemented.*
+- [x] Phase 5: Registered-oracle reserve attestation (v2) with Ed25519 signature verification — **shipped & verified on-chain.** `set_oracle_key` registers an authorized reserve-oracle Ed25519 key; `verify_oracle_sig` / `attest_reserves_v2` verify the oracle's signature over `reserves_threshold ‖ kyc_root` against that **registered** key (closing the prior "caller supplies its own key" gap) on testnet contract `CBBO72ROVZVAC2KWYZOEN6PH2GAGFFIFFDO35FV5PGM3QWDEN4EO45PU`. Reproduce: `npm run prove:demo:oracle` (registered-key sig → `true`, tampered → rejected). Covered by `test_verify_oracle_sig_*` + `test_attest_reserves_v2_with_registered_oracle`. _Production transport: the oracle key would be operated by a TLSNotary notary that witnesses the custodian balance — that TLS-transcript layer is out of scope and not implemented._
 - [x] Phase 6: Batch solvency attestation for multi-issuer aggregation (v3) — **shipped & verified on-chain.** Real `aggregator.circom` Groth16 circuit (per-issuer solvency + system-wide conservation + Poseidon batch-root commitment over N=4 issuers) → BN254 proof → on-chain `verify_batch_proof` / `attest_batch_v3` against a dedicated batch VK on testnet contract `CANW4N5YTB4UYDM4MO5WK5SUHGPLJBXG3FQATLZQ5QKAQ2A57TXQ2DL2`. Reproduce: `npm run prove:demo:batch` (real proof → `true`, tampered inputs → `false`). Covered by contract unit tests `test_batch_attestation_v3_*`.
-- [ ] Phase 7: Hosted/decentralized prover network (e.g. Sindri) for production-grade proving — *blocked on external infra: requires a third-party proving account + API key, not available in this environment. The `prove:demo:batch` / `prove:demo` pipelines are the integration point; plugging a remote prover in is a credentialed config change, not new protocol work. Not deployed — left honest rather than stubbed.*
+- [ ] Phase 7: Hosted/decentralized prover network (e.g. Sindri) for production-grade proving — _blocked on external infra: requires a third-party proving account + API key, not available in this environment. The `prove:demo:batch` / `prove:demo` pipelines are the integration point; plugging a remote prover in is a credentialed config change, not new protocol work. Not deployed — left honest rather than stubbed._
 
 ---
 

@@ -22,7 +22,10 @@ import * as path from "path";
 
 function run(cmd: string, silent = false): string {
   try {
-    return execSync(cmd, { encoding: "utf-8", stdio: silent ? "pipe" : "inherit" }).trim();
+    return execSync(cmd, {
+      encoding: "utf-8",
+      stdio: silent ? "pipe" : "inherit",
+    }).trim();
   } catch (err) {
     if (!silent) console.error(`Command failed: ${cmd}`);
     throw err;
@@ -89,16 +92,24 @@ function determineBump(commits: ParsedCommit[]): BumpType {
 function incrementVersion(version: string, bump: BumpType): string {
   const [major, minor, patch] = version.split(".").map(Number);
   switch (bump) {
-    case "major": return `${major + 1}.0.0`;
-    case "minor": return `${major}.${minor + 1}.0`;
-    case "patch": return `${major}.${minor}.${patch + 1}`;
-    default: return version;
+    case "major":
+      return `${major + 1}.0.0`;
+    case "minor":
+      return `${major}.${minor + 1}.0`;
+    case "patch":
+      return `${major}.${minor}.${patch + 1}`;
+    default:
+      return version;
   }
 }
 
 // ── Changelog Generation ──────────────────────────────────────────────────────
 
-function generateChangelog(commits: ParsedCommit[], newVersion: string, prevTag: string): string {
+function generateChangelog(
+  commits: ParsedCommit[],
+  newVersion: string,
+  prevTag: string,
+): string {
   const date = new Date().toISOString().split("T")[0];
   const sections: Record<string, ParsedCommit[]> = {};
 
@@ -135,7 +146,12 @@ function generateChangelog(commits: ParsedCommit[], newVersion: string, prevTag:
     md += "\n";
   }
 
-  const ORDER = ["🚀 Features", "🐛 Bug Fixes", "⚡ Performance", "♻️ Refactoring"];
+  const ORDER = [
+    "🚀 Features",
+    "🐛 Bug Fixes",
+    "⚡ Performance",
+    "♻️ Refactoring",
+  ];
   const orderedKeys = [
     ...ORDER.filter((k) => sections[k]),
     ...Object.keys(sections).filter((k) => !ORDER.includes(k)),
@@ -159,7 +175,13 @@ function generateChangelog(commits: ParsedCommit[], newVersion: string, prevTag:
 function findCargoTomls(dir: string, fileList: string[] = []): string[] {
   const files = fs.readdirSync(dir);
   for (const file of files) {
-    if (file === "node_modules" || file === ".next" || file === "target" || file === ".git") continue;
+    if (
+      file === "node_modules" ||
+      file === ".next" ||
+      file === "target" ||
+      file === ".git"
+    )
+      continue;
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
@@ -174,9 +196,14 @@ function findCargoTomls(dir: string, fileList: string[] = []): string[] {
 function updateCargoToml(cargoPath: string, newVersion: string): boolean {
   let content = fs.readFileSync(cargoPath, "utf-8");
   if (content.includes("[package]")) {
-    content = content.replace(/^version = "[^"]+"/m, `version = "${newVersion}"`);
+    content = content.replace(
+      /^version = "[^"]+"/m,
+      `version = "${newVersion}"`,
+    );
     fs.writeFileSync(cargoPath, content, "utf-8");
-    console.log(`  ✓ Cargo.toml at ${path.relative(process.cwd(), cargoPath)} → ${newVersion}`);
+    console.log(
+      `  ✓ Cargo.toml at ${path.relative(process.cwd(), cargoPath)} → ${newVersion}`,
+    );
     return true;
   }
   return false;
@@ -221,7 +248,9 @@ async function createGitHubRelease(tag: string, body: string): Promise<void> {
     console.log(`  ✓ GitHub Release created: ${data.html_url}`);
   } else {
     const err = await res.text();
-    console.log(`  ⚠ GitHub Release failed (${res.status}): ${err.substring(0, 200)}`);
+    console.log(
+      `  ⚠ GitHub Release failed (${res.status}): ${err.substring(0, 200)}`,
+    );
   }
 }
 
@@ -248,10 +277,14 @@ async function main() {
   const logOutput = runSafe(logCmd);
   const lines = logOutput ? logOutput.split("\n") : [];
 
-  const parsed = lines.map(parseCommit).filter((c): c is ParsedCommit => c !== null);
+  const parsed = lines
+    .map(parseCommit)
+    .filter((c): c is ParsedCommit => c !== null);
   const nonConventional = lines.length - parsed.length;
 
-  console.log(`  Commits : ${lines.length} total, ${parsed.length} conventional, ${nonConventional} skipped`);
+  console.log(
+    `  Commits : ${lines.length} total, ${parsed.length} conventional, ${nonConventional} skipped`,
+  );
 
   if (parsed.length === 0) {
     console.log(`\n✅ No releasable conventional commits. Skipping.`);
@@ -285,10 +318,12 @@ async function main() {
 
   // Prepend to CHANGELOG.md
   const changelogPath = path.join(process.cwd(), "CHANGELOG.md");
-  const HEADER = "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n";
+  const HEADER =
+    "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n";
   let existing = "";
   if (fs.existsSync(changelogPath)) {
-    existing = fs.readFileSync(changelogPath, "utf-8")
+    existing = fs
+      .readFileSync(changelogPath, "utf-8")
       .replace(/^# Changelog\n+.*documented in this file\.\n*/i, "");
   }
   fs.writeFileSync(changelogPath, HEADER + changelog + existing, "utf-8");
@@ -297,7 +332,10 @@ async function main() {
   if (process.env.GITHUB_ACTIONS === "true") {
     console.log("\n🚀 Publishing:");
     run('git config --global user.name "github-actions[bot]"', true);
-    run('git config --global user.email "github-actions[bot]@users.noreply.github.com"', true);
+    run(
+      'git config --global user.email "github-actions[bot]@users.noreply.github.com"',
+      true,
+    );
 
     run("git add package.json CHANGELOG.md", true);
     for (const cp of cargoPaths) {
@@ -315,7 +353,9 @@ async function main() {
 
     await createGitHubRelease(`v${newVersion}`, changelog);
   } else {
-    console.log(`\n⚠ Not in CI — skipping commit/tag/push. Run locally to preview.`);
+    console.log(
+      `\n⚠ Not in CI — skipping commit/tag/push. Run locally to preview.`,
+    );
     console.log(`\nChangelog preview:\n${changelog}`);
   }
 
