@@ -285,7 +285,7 @@ export default function Home() {
             solvency oracle contract on Stellar testnet today.
           </p>
           <a
-            href="https://github.com/edycutjong/hermes-docs"
+            href="https://github.com/edycutjong/crisp"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex px-6 py-2.5 rounded-lg bg-brand-primary text-gray-950 font-bold hover:bg-brand-accent transition-all duration-normal"

@@ -141,11 +141,11 @@ Maintains trusted solvency verifications and allowlisted providers:
 - `attest_reserves(env: Env, proof: Bytes, kyc_root: BytesN<32>, total_liabilities: u128, reserves_threshold: u128, issuer_ax: BytesN<32>, issuer_ay: BytesN<32>) -> bool`: Verify solvency using Groth16 verification against public inputs `[kyc_root, total_liabilities, reserves_threshold, issuer_ax, issuer_ay]`. Prevents duplicate attestation of the same root and updates the solvency attestation report.
 - `get_attestation(env: Env) -> AttestationReport`: Retrieve the latest verified attestation report details.
 
-### 🔭 Roadmap — designed, NOT deployed on the contract above
+### 🔭 v3 extension — deployed as a dedicated contract, not wired into the demo web app
 
-> **Honest status:** the items below are **design-stage** and are intentionally _not_ part of the deployed v1 oracle. The `aggregator.circom` source exists but is **not compiled, proven, or wired**, and the local `attest_batch_v3` performs only structural checks (issuer count, the `R_total ≥ L_total` invariant, replay protection) — it does **not** yet run a cryptographic batch pairing check. Do not treat it as production ZK.
+> **Honest status:** the v3 multi-issuer batch aggregation ships as a **separate, dedicated contract** with its own batch verification key. `circuits/aggregator.circom` is compiled and proven, `attest_batch_v3` runs a real batch pairing check (no longer a structural-only stub), and it is verified on Stellar testnet — reproducible via `npm run prove:demo:batch`. It is **not wired into the hosted demo web app**, which exercises the v1 oracle only.
 
-- `attest_batch_v3(...)` **[planned v3]** — Multi-issuer aggregated solvency: a single batch Groth16 proof over N issuers (min 2), the system-wide invariant $R_{total} \ge L_{total}$, per-issuer root registration, and batch replay protection. Backing circuit `circuits/aggregator.circom` is design-stage only.
+- `attest_batch_v3(...)` **[v3, shipped]** — Multi-issuer aggregated solvency: a single batch Groth16 proof over N issuers (min 2), the system-wide invariant $R_{total} \ge L_{total}$, per-issuer root registration, and batch replay protection, against a dedicated batch VK on testnet contract `CANW4N5YTB4UYDM4MO5WK5SUHGPLJBXG3FQATLZQ5QKAQ2A57TXQ2DL2`. Reproduce: `npm run prove:demo:batch`.
 
 ## 🚀 Getting Started
 
