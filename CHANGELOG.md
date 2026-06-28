@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1](../../compare/v1.1.0...v1.1.1) (2026-06-28)
+
+### 🐛 Bug Fixes
+
+- **components:** replace inline SVG logo with public icon.svg in navbar (2e074d9)
+
 ## [1.1.0](../../compare/HEAD~50...v1.1.0) (2026-06-28)
 
 ### 🚀 Features
