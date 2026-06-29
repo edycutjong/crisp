@@ -61,6 +61,28 @@ Stablecoin issuers (USDC, EURC) hold billions in custodian reserves. In the wake
 
 ---
 
+## ✅ Proof of On-Chain Verification (reproduce it)
+
+`npm run prove:demo` generates a **fresh** BN254 Groth16 solvency proof and submits a **real transaction** to Stellar testnet — `attest_reserves` returns `true` only when reserves ≥ liabilities. Example run:
+
+```text
+Generating real BN254 Groth16 solvency proof (EdDSA-signed; liabilities 7163308, reserves 7737690)...
+off-chain verify: true
+Submitting on-chain attest_reserves to CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY ...
+✅ Transaction submitted successfully!
+🔗 https://stellar.expert/explorer/testnet/tx/9eedee5443288551e094c23ab6dc57467f31afd7a036613eea9e44f16badeae5
+on-chain attest_reserves => true
+
+✅ JS-generated solvency proof attested on-chain.
+```
+
+Each run submits a real on-chain transaction (the hash varies per run). Tampered inputs are rejected — see the `cargo test` negative controls.
+
+- **Oracle contract (testnet):** [`CDXROOAC…GKXXSOY`](https://stellar.expert/explorer/testnet/contract/CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY)
+- **Example tx:** [`9eedee54…badeae5`](https://stellar.expert/explorer/testnet/tx/9eedee5443288551e094c23ab6dc57467f31afd7a036613eea9e44f16badeae5)
+
+---
+
 ## 🏗️ Architecture & Tech Stack
 
 ```mermaid

@@ -3,7 +3,7 @@ import { getLatestReport } from "@/lib/db";
 
 const oracleAddress =
   process.env.NEXT_PUBLIC_SOLVENCY_ORACLE ||
-  "CDVERIFYSOLVENCYORACLEXXXXXXMOCKADDRESSXXXXXX";
+  "CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY";
 
 export async function GET() {
   try {
@@ -18,17 +18,15 @@ export async function GET() {
       contracts: {
         solvency_oracle: oracleAddress,
       },
+      verify_entrypoint: "attest_reserves",
       latest_proof: {
         verified: latest ? true : false,
         timestamp: timestamp,
-        // Protocol 25/26 Poseidon2 vs SHA256 instruction counts comparison
-        instruction_cost: 1482903,
-        sha256_cost: 12894019,
-        savings_percent: 88.5,
         kyc_root: latest ? latest.kyc_root : null,
         total_liabilities: latest ? latest.total_liabilities : 0,
         total_reserves: latest ? latest.total_reserves : 0,
       },
+      note: "Real BN254 Groth16 solvency verification is reproduced via `npm run prove:demo` (attest_reserves on-chain).",
     });
   } catch (err: unknown) {
     return NextResponse.json(
