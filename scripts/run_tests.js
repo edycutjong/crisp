@@ -428,6 +428,16 @@ test("Crypto: Browser subtle crypto path coverage check", async () => {
 });
 
 test("DB: In-memory mock mode and real Supabase client path validation", async () => {
+  // Ensure we start with a clean slate for the mock DB file
+  const fs = require("fs");
+  const path = require("path");
+  const mockDbPath = path.join(__dirname, "../public/mock_db.json");
+  if (fs.existsSync(mockDbPath)) {
+    try {
+      fs.unlinkSync(mockDbPath);
+    } catch (e) {}
+  }
+
   // Set mock mode before requiring so that seeding is started but not finished
   process.env.CRISP_MOCK_MODE = "true";
   const {

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -9,7 +10,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {/* Logo SVG */}
           <div className="h-9 w-9 rounded-lg bg-surface-secondary border border-white/10 flex items-center justify-center">
-            <img src="/icon.svg" className="h-6 w-6" alt="Crisp Logo" />
+            <Image src="/icon.svg" className="h-6 w-6" alt="Crisp Logo" width={24} height={24} />
           </div>
           <span className="font-display text-xl font-black tracking-tight text-white">
             CRISP

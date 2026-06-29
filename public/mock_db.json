@@ -1,83 +1,20 @@
 {
   "reports": [
     {
-      "id": "demo-report-id",
-      "issuer_address": "GDISSUERXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      "tx_hash": "8888888888888888888888888888888888888888888888888888888888888888",
-      "total_liabilities": 500000,
-      "total_reserves": 520000,
-      "kyc_root": "ce0c91e8487da3df68c969baf128f766474a5d2c7f1e954acc6dbf3460600de2",
-      "timestamp": "2026-06-29T01:22:35.762Z"
+      "issuer_address": "issuer",
+      "tx_hash": "tx",
+      "total_liabilities": 100,
+      "total_reserves": 200,
+      "kyc_root": "non-matching-root",
+      "timestamp": "now"
     }
   ],
   "proofs": [
     {
-      "kyc_root": "ce0c91e8487da3df68c969baf128f766474a5d2c7f1e954acc6dbf3460600de2",
-      "account_address": "GA111111111111111111111111111111111111111111111111111111",
-      "balance": 100000,
-      "proof_path": [
-        {
-          "hash": "e523a76ce191905018702cd3de9f7e0c236a9e7fb6857c099e68ee8d135bd8cd",
-          "sum": "150000",
-          "isRight": true
-        },
-        {
-          "hash": "76d1eb1321d4b075988bd6063da57f5181dce8ddf9bb9eb23174391aaed8ebf1",
-          "sum": "250000",
-          "isRight": true
-        }
-      ]
-    },
-    {
-      "kyc_root": "ce0c91e8487da3df68c969baf128f766474a5d2c7f1e954acc6dbf3460600de2",
-      "account_address": "GA222222222222222222222222222222222222222222222222222222",
-      "balance": 150000,
-      "proof_path": [
-        {
-          "hash": "a4bea6322c84e1ef91abdcb0de1a9123703987093edb247a545eb4fe4f38ce9f",
-          "sum": "100000",
-          "isRight": false
-        },
-        {
-          "hash": "76d1eb1321d4b075988bd6063da57f5181dce8ddf9bb9eb23174391aaed8ebf1",
-          "sum": "250000",
-          "isRight": true
-        }
-      ]
-    },
-    {
-      "kyc_root": "ce0c91e8487da3df68c969baf128f766474a5d2c7f1e954acc6dbf3460600de2",
-      "account_address": "GA333333333333333333333333333333333333333333333333333333",
-      "balance": 50000,
-      "proof_path": [
-        {
-          "hash": "badfddc9c881ecaf4e862270baf3f25e8c5c840239304c05fd37a995f2bfa5ff",
-          "sum": "200000",
-          "isRight": true
-        },
-        {
-          "hash": "5b2a7bf3639482e505b4ea2c730f5f64e1eed9c212a0203cadcf980722878051",
-          "sum": "250000",
-          "isRight": false
-        }
-      ]
-    },
-    {
-      "kyc_root": "ce0c91e8487da3df68c969baf128f766474a5d2c7f1e954acc6dbf3460600de2",
-      "account_address": "GA444444444444444444444444444444444444444444444444444444",
-      "balance": 200000,
-      "proof_path": [
-        {
-          "hash": "d196edc49dae760ca6c6d8ae7b3ad08691e4d62bb50b23bc0df02633edc79b8e",
-          "sum": "50000",
-          "isRight": false
-        },
-        {
-          "hash": "5b2a7bf3639482e505b4ea2c730f5f64e1eed9c212a0203cadcf980722878051",
-          "sum": "250000",
-          "isRight": false
-        }
-      ]
+      "kyc_root": "another-root",
+      "account_address": "GA_NON_MATCH",
+      "balance": 100,
+      "proof_path": []
     }
   ]
 }
