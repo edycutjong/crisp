@@ -52,6 +52,14 @@ Stablecoin issuers (USDC, EURC) hold billions in custodian reserves. In the wake
   <img src="public/og-image.png" alt="Crisp Visualizer" width="100%">
 </div>
 
+<div align="center">
+  <img src="docs/screenshots/02-solvency-dashboard.png" alt="Crisp issuer dashboard — live solvency status & public verification panel" width="32%">
+  <img src="docs/screenshots/03-scrape-and-attest.png" alt="Crisp — scrape balances & attest reserves" width="32%">
+  <img src="docs/screenshots/05-verification-success.png" alt="Crisp attestation panel — solvency proof published on-chain" width="32%">
+  <br/>
+  <sub><em>Issuer dashboard &amp; on-chain attestation (demo sandbox). Reproduce the real proof with <code>npm run prove:demo</code>.</em></sub>
+</div>
+
 > **Solvency Attestation Workflow**:
 >
 > 1. Connect Freighter Wallet inside the Issuer Dashboard.
