@@ -54,9 +54,23 @@ export interface UserBalanceProof {
   proof_path: UserBalanceProofNode[];
 }
 
-// Shared in-memory store for demo mode
-let inMemoryReports: SolvencyReport[] = [];
-let inMemoryProofs: UserBalanceProof[] = [];
+import fs from "fs";
+import path from "path";
+
+function getMockDb() {
+  const p = path.join(process.cwd(), "public", "mock_db.json");
+  if (fs.existsSync(p)) {
+    try {
+      return JSON.parse(fs.readFileSync(p, "utf-8"));
+    } catch {}
+  }
+  return { reports: [], proofs: [] };
+}
+
+function saveMockDb(reports: any[], proofs: any[]) {
+  const p = path.join(process.cwd(), "public", "mock_db.json");
+  fs.writeFileSync(p, JSON.stringify({ reports, proofs }, null, 2));
+}
 
 /* istanbul ignore next */
 export async function seedInMemory() {
@@ -114,8 +128,7 @@ export async function seedInMemory() {
       };
     });
 
-    inMemoryReports = [report];
-    inMemoryProofs = proofs;
+    saveMockDb([report], proofs);
   } catch (err) {
     console.error("Error seeding mock db:", err);
   }
@@ -131,7 +144,8 @@ if (getIsMock()) {
 /* istanbul ignore next */
 export async function getLatestReport() {
   if (getIsMock()) {
-    const rep = inMemoryReports[0];
+    const db = getMockDb();
+    const rep = db.reports[0];
     if (rep !== undefined) {
       return rep;
     }
@@ -155,11 +169,12 @@ export async function getLatestReport() {
 /* istanbul ignore next */
 export async function getProofForAccount(accountId: string) {
   if (getIsMock()) {
-    const proof = inMemoryProofs.find((p) => p.account_address === accountId);
+    const db = getMockDb();
+    const proof = db.proofs.find((p: any) => p.account_address === accountId);
     if (!proof) {
       return null;
     }
-    const rep = inMemoryReports.find((r) => r.kyc_root === proof.kyc_root);
+    const rep = db.reports.find((r: any) => r.kyc_root === proof.kyc_root);
     return {
       account_address: proof.account_address,
       balance: proof.balance,
@@ -202,8 +217,7 @@ export async function insertNewAttestation(
   proofs: UserBalanceProof[],
 ) {
   if (getIsMock()) {
-    inMemoryReports = [report];
-    inMemoryProofs = proofs;
+    saveMockDb([report], proofs);
     return;
   }
 
