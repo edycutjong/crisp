@@ -5,7 +5,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: process.env.CI ? "html" : "list",
   use: {
     baseURL: "http://localhost:3000",
@@ -21,5 +21,8 @@ export default defineConfig({
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,
+    env: {
+      CRISP_MOCK_MODE: "true",
+    },
   },
 });

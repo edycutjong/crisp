@@ -88,7 +88,9 @@ export async function POST(req: Request) {
     const totalLiabilities = root.sum;
 
     if (getIsMock()) {
-      reservesBigInt = totalLiabilities + 100000n;
+      if (reservesBigInt >= totalLiabilities) {
+        reservesBigInt = totalLiabilities + 100000n;
+      }
     }
 
     // Check Solvency Invariant: reserves >= liabilities
@@ -150,6 +152,7 @@ export async function POST(req: Request) {
       timestamp: timestamp,
     });
   } catch (err: unknown) {
+    console.error("Solvency attestation API error:", err);
     return NextResponse.json(
       {
         error: "Failed to run solvency attestation",
