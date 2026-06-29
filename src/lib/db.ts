@@ -170,11 +170,15 @@ export async function getLatestReport() {
 export async function getProofForAccount(accountId: string) {
   if (getIsMock()) {
     const db = getMockDb();
-    const proof = (db.proofs as UserBalanceProof[]).find((p) => p.account_address === accountId);
+    const proof = (db.proofs as UserBalanceProof[]).find(
+      (p) => p.account_address === accountId,
+    );
     if (!proof) {
       return null;
     }
-    const rep = (db.reports as SolvencyReport[]).find((r) => r.kyc_root === proof.kyc_root);
+    const rep = (db.reports as SolvencyReport[]).find(
+      (r) => r.kyc_root === proof.kyc_root,
+    );
     return {
       account_address: proof.account_address,
       balance: proof.balance,
