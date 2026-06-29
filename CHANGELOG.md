@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](../../compare/v1.1.1...v1.2.0) (2026-06-29)
+
+### 🚀 Features
+
+- **crisp:** update contract ids to real testnet deployments (82adf98)
+
+### 🐛 Bug Fixes
+
+- **e2e:** fix solvency attestation race conditions in E2E tests (e1ae51e)
+- **crisp:** resolve eslint errors and unit test failure (2871f92)
+
+### 📝 Documentation
+
+- **pitch:** replace emoji with logo icon and update demo video link (a0416bc)
+- **readme:** add walkthrough screenshot gallery to README (5410fe2)
+- **readme:** update demo video YouTube URL and configuration (a868360)
+- **readme:** update readme and correct repository link (4314c0a)
+- **readme:** add Demo Materials section and link GitHub & Pitch Deck (0f88409)
+
+### 💄 Style
+
+- **crisp:** run prettier to format codebase (2d596ba)
+
 ## [1.1.1](../../compare/v1.1.0...v1.1.1) (2026-06-28)
 
 ### 🐛 Bug Fixes
