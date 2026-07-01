@@ -95,6 +95,12 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
     }, 600);
   };
 
+  const disconnectWallet = () => {
+    setIsConnected(false);
+    setSandboxMode(true);
+    setLogs((prev) => [...prev, "[Wallet] Disconnected."]);
+  };
+
   const handleAttest = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isConnected) return;
@@ -351,13 +357,23 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
                   : "TESTNET INTEGRATION ACTIVE: SENDING TRANSACTION REQUESTS TO SOROBAN CONTRACTS"}
               </span>
             </div>
-            <button
-              type="button"
-              onClick={() => setSandboxMode((prev) => !prev)}
-              className="bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 px-3 py-1.5 rounded-lg text-[10px] font-bold text-teal-300 transition-all uppercase tracking-wider self-stretch sm:self-auto text-center cursor-pointer"
-            >
-              Switch to {sandboxMode ? "Live Testnet" : "Sandbox Mode"}
-            </button>
+            <div className="flex gap-2 self-stretch sm:self-auto">
+              <button
+                type="button"
+                onClick={() => setSandboxMode((prev) => !prev)}
+                className="bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 px-3 py-1.5 rounded-lg text-[10px] font-bold text-teal-300 transition-all uppercase tracking-wider flex-1 sm:flex-none text-center cursor-pointer"
+              >
+                Switch to {sandboxMode ? "Live Testnet" : "Sandbox Mode"}
+              </button>
+              <button
+                type="button"
+                onClick={disconnectWallet}
+                title="Disconnect issuer wallet"
+                className="bg-gray-800/40 hover:bg-gray-700/40 border border-gray-600/40 px-3 py-1.5 rounded-lg text-[10px] font-bold text-gray-300 hover:text-white transition-all uppercase tracking-wider text-center cursor-pointer"
+              >
+                Disconnect
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
