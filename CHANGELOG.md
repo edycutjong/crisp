@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0](../../compare/v1.4.0...v1.5.0) (2026-07-01)
+
+### 🚀 Features
+
+- **legal:** add Privacy & Terms pages + footer links (6a6681c)
+
 ## [1.4.0](../../compare/v1.3.0...v1.4.0) (2026-07-01)
 
 ### 🚀 Features
