@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](../../compare/v1.2.0...v1.3.0) (2026-07-01)
+
+### 🚀 Features
+
+- **wallet:** fix Freighter detection gate + add demo button (55a00a2)
+
+### 💄 Style
+
+- fix prettier formatting (7f6234a)
+- format pitch.html with prettier (41f833e)
+
+### ✅ Tests
+
+- **core:** verify and complete unit test suites and coverage (5e074a2)
+
+### 📝 Documentation
+
+- **pitch:** replace page 1 emojis with SVG icons (71a3c2a)
+
 ## [1.2.0](../../compare/v1.1.1...v1.2.0) (2026-06-29)
 
 ### 🚀 Features
