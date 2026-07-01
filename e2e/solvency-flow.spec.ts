@@ -43,7 +43,10 @@ test.describe("Crisp Solvency & Attestation Flows", () => {
       name: "Connect Freighter Wallet",
     });
     await expect(connectBtn).toBeVisible();
-    await connectBtn.click();
+    // Real Freighter needs the browser extension, unavailable in CI — the Demo
+    // button loads a predefined sandbox issuer identity instead.
+    const demoBtn = page.getByRole("button", { name: "Use Demo Identity" });
+    await demoBtn.click();
 
     // Verify wallet connected state
     await expect(page.locator("text=Address: GDISSUER")).toBeVisible({
@@ -81,11 +84,9 @@ test.describe("Crisp Solvency & Attestation Flows", () => {
   }) => {
     await page.goto("/");
 
-    // Connect wallet
-    const connectBtn = page.getByRole("button", {
-      name: "Connect Freighter Wallet",
-    });
-    await connectBtn.click();
+    // Load the demo issuer identity (see note above)
+    const demoBtn = page.getByRole("button", { name: "Use Demo Identity" });
+    await demoBtn.click();
 
     // Verify wallet connected state
     await expect(page.locator("text=Address: GDISSUER")).toBeVisible({

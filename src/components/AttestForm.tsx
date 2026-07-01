@@ -11,7 +11,9 @@ import {
 } from "lucide-react";
 import {
   isConnected as isFreighterConnected,
+  requestAccess,
   getAddress,
+  signTransaction as freighterSignTransaction,
 } from "@stellar/freighter-api";
 import { triggerConfetti } from "@/lib/confetti";
 
@@ -46,37 +48,22 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
     setIsConnecting(true);
     setLogs(["[Freighter] Connecting to Freighter Wallet..."]);
     try {
-      const win = window as unknown as Record<string, Record<string, unknown>>;
-      const freighterDetected =
-        typeof window !== "undefined" && (win.stellarWebKit || win.stellar);
-      if (!freighterDetected) {
+      const connection = await isFreighterConnected();
+      if (!connection.isConnected) {
         setLogs((prev) => [
           ...prev,
-          "[Freighter] Wallet extension not detected. Initializing Demo Mode...",
+          "[Freighter] Extension not detected. Install Freighter, or use the Demo button to explore the sandbox.",
         ]);
-        setTimeout(() => {
-          setIsConnected(true);
-          setIsConnecting(false);
-          setLogs((prev) => [
-            ...prev,
-            `[Freighter] Connected (Demo Mode). Address: ${issuerAddress}`,
-          ]);
-        }, 1200);
         return;
       }
 
-      const isWalConnectedRes = await isFreighterConnected();
-      if (!isWalConnectedRes.isConnected) {
-        throw new Error("Freighter connection request rejected.");
+      const access = await requestAccess();
+      if (access.error) {
+        throw new Error(String(access.error));
       }
-      const pubKeyRes = await getAddress();
-      const pubKey = pubKeyRes.address;
+      const pubKey = access.address;
       if (!pubKey) {
-        throw new Error(
-          pubKeyRes.error
-            ? String(pubKeyRes.error)
-            : "Failed to retrieve public key from Freighter.",
-        );
+        throw new Error("Failed to retrieve public key from Freighter.");
       }
       setIsConnected(true);
       setSandboxMode(false);
@@ -89,6 +76,23 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
     } finally {
       setIsConnecting(false);
     }
+  };
+
+  // Predefined demo issuer identity — no wallet extension required. Stays in
+  // sandbox mode so nothing is broadcast; for exploring the console UI.
+  const connectDemoWallet = () => {
+    setLogs((prev) => [
+      ...prev,
+      "[Sandbox] Loading predefined demo issuer identity...",
+    ]);
+    setTimeout(() => {
+      setIsConnected(true);
+      setSandboxMode(true);
+      setLogs((prev) => [
+        ...prev,
+        `[Sandbox] Demo identity active. Address: ${issuerAddress}`,
+      ]);
+    }, 600);
   };
 
   const handleAttest = async (e: React.FormEvent) => {
@@ -218,25 +222,22 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
           ...prev,
           `[Freighter] Requesting signature to publish solvency attestation...`,
         ]);
-        const signedTx = await (
-          window as unknown as {
-            stellar: {
-              signTransaction: (
-                xdr: string,
-                opts: { networkPassphrase: string },
-              ) => Promise<string>;
-            };
-          }
-        ).stellar.signTransaction(xdrTx, {
+        const signResult = await freighterSignTransaction(xdrTx, {
           networkPassphrase: Networks.TESTNET,
+          address: userAddress,
         });
+        if (signResult.error) {
+          throw new Error(
+            `Freighter signing failed: ${JSON.stringify(signResult.error)}`,
+          );
+        }
 
         setLogs((prev) => [
           ...prev,
           `[Stellar] Submitting transaction to Soroban RPC...`,
         ]);
         const signedTxObj = TransactionBuilder.fromXDR(
-          signedTx,
+          signResult.signedTxXdr,
           Networks.TESTNET,
         );
         const sendResponse = await server.sendTransaction(signedTxObj);
@@ -316,15 +317,25 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
             Connect your Freighter wallet to authorize reserve audits and
             publish solvency proofs.
           </p>
-          <button
-            onClick={connectWallet}
-            disabled={isConnecting}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-brand-primary text-gray-950 font-semibold hover:bg-brand-accent transition-all duration-normal disabled:opacity-50"
-          >
-            {isConnecting
-              ? "Connecting Freighter..."
-              : "Connect Freighter Wallet"}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={connectWallet}
+              disabled={isConnecting}
+              className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-brand-primary text-gray-950 font-semibold hover:bg-brand-accent transition-all duration-normal disabled:opacity-50"
+            >
+              {isConnecting
+                ? "Connecting Freighter..."
+                : "Connect Freighter Wallet"}
+            </button>
+            <button
+              onClick={connectDemoWallet}
+              disabled={isConnecting}
+              title="Load a predefined demo issuer identity — no wallet extension required"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-300 font-semibold hover:bg-amber-500/20 transition-all duration-normal disabled:opacity-50"
+            >
+              Use Demo Identity
+            </button>
+          </div>
         </div>
       ) : (
         <form onSubmit={handleAttest} className="space-y-6">
