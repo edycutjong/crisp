@@ -63,8 +63,8 @@ export default function Home() {
       a: "You can enter your public address, balance, and salt in our Public Verification Panel. The client re-calculates your leaf hash and aggregates the sibling nodes from the proof path. If the final hash and sum match the on-chain liabilities root commitment, your balance is cryptographically guaranteed to be included in the solvency pool.",
     },
     {
-      q: "Why is Poseidon2 used instead of SHA-256?",
-      a: "SHA-256 requires intensive Boolean constraints inside ZK circuits, inflating constraint size and on-chain verification gas. Poseidon2 is designed specifically for elliptic curve arithmetic. Using Stellar Protocol 25's native Poseidon2 host functions reduces Soroban execution instructions by over 88%.",
+      q: "Why is Poseidon used instead of SHA-256?",
+      a: "SHA-256 needs intensive Boolean constraints inside a ZK circuit (~28,000 per hash), which bloats the circuit and slows proof generation. Poseidon is built for prime-field arithmetic at ~250 constraints per hash — roughly 110× fewer — cutting circuit/proving work by ~88% for our liabilities tree. On-chain cost is unchanged either way: Crisp verifies a single constant-size BN254 pairing on Stellar, and Poseidon hashing runs inside the off-chain circuit.",
     },
   ];
 

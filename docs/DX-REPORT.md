@@ -4,11 +4,11 @@ This log documents the developer experience (DX) and technical friction encounte
 
 ---
 
-## 1. Hashing Constraints & Poseidon2 Integration
+## 1. Hashing Constraints & Poseidon Integration
 
-- **Friction**: Implementing Merkle-Sum Tree constraints in raw ZK circuits (Circom) is extremely expensive when relying on traditional primitives like SHA-256 (which compiles to ~28,000 gates per node).
-- **Soroban Advantage**: Under Stellar Protocol 25, the introduction of the native `env.crypto().poseidon2()` host function aligns perfectly with ZK field arithmetic.
-- **Gas Delta**: On-chain verification for a depth-10 liabilities tree (1,024 user accounts) dropped from **12.8M CPU instructions** (SHA-256) to **1.48M CPU instructions** (Poseidon2) — a **88.50% reduction** that keeps Crisp comfortably within Soroban's transaction limit.
+- **Friction**: Implementing Merkle-Sum Tree constraints in raw ZK circuits (Circom) is extremely expensive when relying on traditional primitives like SHA-256 (which compiles to ~28,000 constraints per node vs ~250 for Poseidon).
+- **Why Poseidon**: Poseidon is designed for native prime-field arithmetic, so it collapses to a tiny constraint count inside the circuit. This is a _proving-side_ win — a smaller circuit and faster client-side proof generation. (Stellar also exposes native `poseidon`/`poseidon2` host functions via CAP-0075 for contracts that hash on-chain; Crisp does not need them, since its Poseidon hashing runs inside the off-chain circuit.)
+- **Circuit-cost delta**: For a depth-10 liabilities tree (1,024 accounts), the modeled in-circuit constraint cost drops from **~12.8M** (SHA-256) to **~1.48M** (Poseidon) — an **~88.5% reduction in proving work**. This is a circuit/proving metric, not an on-chain cost: **on-chain verification is a single constant-size BN254 pairing check, independent of the hash** (see §2).
 
 ## 2. Elliptic Curve Arithmetic (BN254 Pairing)
 
@@ -25,4 +25,4 @@ This log documents the developer experience (DX) and technical friction encounte
 
 ## Conclusion
 
-Stellar's transition to Protocol 25/26 makes it a premier network for zero-knowledge application developers. By embedding the core mathematical functions (Poseidon2, BN254 pairing) directly into the host layer rather than contract-level WASM, developers get EVM-equivalent ZK performance with Stellar's ultra-low latency and low-fee settlement.
+Stellar's transition to Protocol 25/26 makes it a premier network for zero-knowledge application developers. By embedding the core mathematical functions (Poseidon, BN254 pairing) directly into the host layer rather than contract-level WASM, developers get EVM-equivalent ZK performance with Stellar's ultra-low latency and low-fee settlement.

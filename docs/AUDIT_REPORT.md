@@ -36,9 +36,9 @@ using a 64-bit range constraint.
 ### 2.2. Timing and Latency Attacks (Intra-day Insolvency)
 
 - **Threat**: Stablecoins transact 24/7, but ZK attestations are periodic (e.g., daily). An issuer could lose solvency intra-day, settle customer funds, and only deposit collateral right before the next attestation block.
-- **Mitigation**: Move towards continuous micro-attestations. Because Protocol 25/26 reduces CPU instruction fees by 88%, the gas overhead is small enough to run solvency attestations multiple times per hour.
+- **Mitigation**: Move towards continuous micro-attestations. On-chain verification is a single constant-size BN254 pairing that sits comfortably within Soroban's transaction budget, and Poseidon keeps client-side proof generation fast enough to re-attest multiple times per hour.
 
 ### 2.3. Sibling Path Manipulation
 
 - **Threat**: An attacker attempts to forge an inclusion proof by altering the sibling hashes in their path.
-- **Mitigation**: Because every parent node is a cryptographic hash of both child hashes and sums, mutating any node in the path will propagate up and yield a root hash mismatch. The security of the tree is bound by the preimage resistance of the Poseidon2 hashing algorithm.
+- **Mitigation**: Because every parent node is a cryptographic hash of both child hashes and sums, mutating any node in the path will propagate up and yield a root hash mismatch. The security of the tree is bound by the preimage resistance of the Poseidon hashing algorithm.

@@ -14,7 +14,7 @@ export default function InstructionsChart() {
         <div className="flex items-center gap-3">
           <Cpu className="h-6 w-6 text-brand-primary" />
           <h2 className="font-display text-xl font-bold text-white">
-            Soroban CPU Hashing Telemetry
+            ZK Circuit Hashing Cost (Poseidon vs SHA-256)
           </h2>
         </div>
         <Zap className="h-5 w-5 text-brand-accent animate-pulse" />
@@ -22,8 +22,9 @@ export default function InstructionsChart() {
 
       <div className="space-y-6">
         <p className="text-sm text-gray-400">
-          Comparing the CPU instruction execution costs on-chain for a depth-10
-          Merkle-Sum Tree (1,024 accounts).
+          Comparing in-circuit constraint cost (proving-side) for a depth-10
+          Merkle-Sum Tree (1,024 accounts). On-chain verification is a constant
+          BN254 pairing, independent of the hash.
         </p>
 
         {/* SHA-256 Bar */}
@@ -33,7 +34,7 @@ export default function InstructionsChart() {
               SHA-256 MST (Baseline)
             </span>
             <span className="font-mono text-gray-300">
-              {(shaInst / 1000000).toFixed(2)}M Instructions
+              {(shaInst / 1000000).toFixed(2)}M constraints
             </span>
           </div>
           <div className="h-4 w-full bg-gray-900 rounded-full overflow-hidden border border-white/5">
@@ -44,14 +45,14 @@ export default function InstructionsChart() {
           </div>
         </div>
 
-        {/* Poseidon2 Bar */}
+        {/* Poseidon Bar */}
         <div className="space-y-2">
           <div className="flex justify-between text-xs">
             <span className="font-semibold text-brand-primary">
-              Poseidon2 MST (Protocol 25)
+              Poseidon MST (in-circuit)
             </span>
             <span className="font-mono text-brand-primary">
-              {(poseidonInst / 1000000).toFixed(2)}M Instructions
+              {(poseidonInst / 1000000).toFixed(2)}M constraints
             </span>
           </div>
           <div className="h-4 w-full bg-gray-900 rounded-full overflow-hidden border border-white/5">
@@ -69,12 +70,12 @@ export default function InstructionsChart() {
           </div>
           <div>
             <div className="text-sm font-bold text-white">
-              Poseidon2 instruction reduction: {savings}%
+              Poseidon circuit-constraint reduction: {savings}%
             </div>
             <p className="text-xs text-gray-400 mt-0.5">
-              Protocol 25 Poseidon2 host functions enable high-performance
-              solvency verifications inside standard Soroban transaction CPU
-              limits.
+              Fewer circuit constraints mean faster client-side proof
+              generation; on-chain, Crisp verifies a single constant-size BN254
+              pairing regardless of the hash.
             </p>
           </div>
         </div>

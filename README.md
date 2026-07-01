@@ -13,7 +13,7 @@
 [![Live Demo](https://img.shields.io/badge/🚀_Live-Demo-06b6d4?style=for-the-badge)](https://crisp.edycu.dev)
 [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://crisp.edycu.dev/pitch.html)
 [![Demo Video](https://img.shields.io/badge/🎬_Demo-Video-ef4444?style=for-the-badge)](https://youtu.be/fhVVoZKz7sI)
-[![Built for Stellar Hacks](https://img.shields.io/badge/DoraHacks-Stellar_Hacks_ZK-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/stellar-hacks-zk)
+[![Built for Stellar Hacks](https://img.shields.io/badge/DoraHacks-Stellar_Hacks:_Real--World_ZK-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/stellar-hacks-zk)
 
   <br/>
 
@@ -26,6 +26,22 @@
 [![CI](https://github.com/edycutjong/crisp/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/crisp/actions/workflows/ci.yml)
 
 </div>
+
+---
+
+## 🧩 Part of the Stellar ZK Suite
+
+Five ZK-gated apps, one thesis: **real on-chain zero-knowledge on Stellar Soroban** (Protocol 25/26, native BN254 host functions). Each verifies a _fresh_ proof against a deployed testnet contract, reproducible with `npm run prove:demo` (valid proof ⇒ `true`, tampered ⇒ `false`). Built solo for **Stellar Hacks: Real-World ZK**.
+
+| App | Proves privately | ZK stack | Links |
+|---|---|---|---|
+| 👤 **[Shroud](https://github.com/edycutjong/shroud)** ⭐ **flagship** | Compliant privacy pool — withdraw only if in the ASP compliance set | Circom · Groth16 (BN254) | [site](https://shroud.edycu.dev) · [video](https://youtu.be/WhIzP_K0UBU) |
+| 🔬 **[Crisp](https://github.com/edycutjong/crisp)** | Proof-of-reserves — reserves ≥ liabilities, balances hidden | Circom · Groth16 (BN254) | [site](https://crisp.edycu.dev) · [video](https://youtu.be/fhVVoZKz7sI) |
+| 🤫 **[Sotto](https://github.com/edycutjong/sotto)** | Sealed-bid auctions — winner is the lowest valid bid, losers hidden | Circom · Groth16 (BN254) | [site](https://sotto.edycu.dev) · [video](https://youtu.be/PAbWjCXx5XU) |
+| 🔮 **[Obscura](https://github.com/edycutjong/obscura)** | B2B invoice settlement — within credit terms, no double-factoring | Noir · UltraHonk | [site](https://obscura.edycu.dev) · [video](https://youtu.be/PZ9tChsAwas) |
+| 🦓 **[Zebra](https://github.com/edycutjong/zebra)** | Confidential payroll — KYC'd recipients + correct totals, salaries hidden | Noir · UltraHonk | [site](https://zebra.edycu.dev) · [video](https://youtu.be/KatlfYRjvw8) |
+
+🚩 **Flagship: [Shroud](https://github.com/edycutjong/shroud)** — the compliant privacy pool (ASP gateway, per the SDF's recommended design). All five share the same circuits-to-Soroban verification harness.
 
 ---
 

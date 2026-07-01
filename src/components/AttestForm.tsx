@@ -387,7 +387,7 @@ export default function AttestForm({ onAttestSuccess }: AttestFormProps) {
                       : "bg-transparent border-white/10 text-gray-400 hover:border-white/20"
                   }`}
                 >
-                  Poseidon2 (P25)
+                  Poseidon (P25)
                 </button>
                 <button
                   type="button"

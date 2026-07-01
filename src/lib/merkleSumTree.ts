@@ -37,8 +37,8 @@ export async function hashSha256(message: string): Promise<string> {
   }
 }
 
-// Simulated Poseidon2 Hash function using SHA-256 prefix for cryptographic simulation
-export async function hashPoseidon2(message: string): Promise<string> {
+// Simulated Poseidon Hash function using SHA-256 prefix for cryptographic simulation
+export async function hashPoseidon(message: string): Promise<string> {
   return hashSha256(`poseidon2:${message}`);
 }
 
@@ -59,7 +59,7 @@ export class MerkleSumTree {
 
   // Hash elements according to selected primitive
   private async hash(msg: string): Promise<string> {
-    return this.usePoseidon ? hashPoseidon2(msg) : hashSha256(msg);
+    return this.usePoseidon ? hashPoseidon(msg) : hashSha256(msg);
   }
 
   // Pad leaves with dummy accounts to a power of 2
@@ -184,7 +184,7 @@ export class MerkleSumTree {
     proof: SiblingNode[],
     usePoseidon = true,
   ): Promise<boolean> {
-    const hashFn = usePoseidon ? hashPoseidon2 : hashSha256;
+    const hashFn = usePoseidon ? hashPoseidon : hashSha256;
     let currentHash = await hashFn(
       `${accountId}-${balance.toString()}-${salt}`,
     );

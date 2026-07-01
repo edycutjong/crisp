@@ -63,7 +63,7 @@ global.snarkjs = {
 
 const {
   MerkleSumTree,
-  hashPoseidon2,
+  hashPoseidon,
   hashSha256,
 } = require("../src/lib/merkleSumTree");
 
@@ -95,9 +95,9 @@ test("Tree constructor should throw on empty leaf array", async () => {
 
 test("Hash functions should return correct formats", async () => {
   const sha = await hashSha256("hello");
-  const pos = await hashPoseidon2("hello");
+  const pos = await hashPoseidon("hello");
   assert(sha.length === 64, "SHA-256 should be 64 chars hex");
-  assert(pos.length === 64, "Poseidon2 mock should be 64 chars hex");
+  assert(pos.length === 64, "Poseidon mock should be 64 chars hex");
   assert(
     sha !== pos,
     "Different hash functions should yield different results",
