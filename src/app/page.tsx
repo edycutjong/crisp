@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import VerifyForm from "@/components/VerifyForm";
 import AttestForm from "@/components/AttestForm";
@@ -387,6 +388,17 @@ export default function Home() {
           </div>
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 border-t border-white/5 mt-8 pt-8 text-center text-[10px] text-gray-600">
+          <div className="flex justify-center gap-4 mb-3 text-gray-500">
+            <Link
+              href="/privacy"
+              className="hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Use
+            </Link>
+          </div>
           &copy; 2026 Crisp solvency project. Built for the Stellar Hacks:
           Real-World ZK Hackathon.
         </div>
