@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0](../../compare/v1.7.0...v1.8.0) (2026-07-02)
+
+### 🚀 Features
+
+- **zk:** witness the real on-chain proof in-browser (7154965)
+
 ## [1.7.0](../../compare/v1.6.0...v1.7.0) (2026-07-02)
 
 ### 🚀 Features
