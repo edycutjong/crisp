@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import VerifyForm from "@/components/VerifyForm";
 import AttestForm from "@/components/AttestForm";
+import VerifyOnchainPanel from "@/components/VerifyOnchainPanel";
 import InstructionsChart from "@/components/InstructionsChart";
 import {
   HelpCircle,
@@ -115,6 +116,9 @@ export default function Home() {
             </a>
           </div>
         </section>
+
+        {/* Real on-chain ZK verification (witnessable, no wallet) */}
+        <VerifyOnchainPanel />
 
         {/* Global Solvency Status Header */}
         <section className="glass-panel rounded-2xl p-6 md:p-8 border-white/5 relative overflow-hidden">

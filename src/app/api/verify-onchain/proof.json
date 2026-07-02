@@ -1,0 +1,11 @@
+{
+  "_comment": "Real BN254 Groth16 solvency proof (snarkjs, EdDSA-signed root). Re-verified live on-chain by /api/verify-onchain.",
+  "verifier": "CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY",
+  "entrypoint": "attest_reserves",
+  "proofHex": "21ca0aa79ede4066a7a517dcbedc6880aa64a3a3e20457df1b5132b4e7fa3957091b3d790cc5478c427d9b4a4c8690339f9008af5996147c9f1667b67322a53026f517b4d159c48f1bf2c78320070ab62c29b0ceb13b22b81b601c22769fed041f5cf46d4bf90904b8622c628f97b7749212ea5cef886a7e28cc965b1a0333a521c7e4f6c6ddc2bf8accaf049ba006e42448f417f2a56447c0a6b16fe1f67e76037968c8ec2c312fd555a009faad889cac030b218feeaa7263d0b80a294604aa166d5bfcf4d79cc73ccb9b2f07ee99e31dd19cc4106a2dd06d8f9acbe87706c02a6cc031ec0a0b572396986ea5524b442ad71f44c2126d97dcae518897d4449a",
+  "kycRootHex": "217c4d686ab9e463dd33ca745faea59ee2d64fe0f23a9326aea1d7059561bc10",
+  "totalLiabilities": "7422741",
+  "reservesThreshold": "8272680",
+  "issuerAxHex": "1d5ac1f31407018b7d413a4f52c8f74463b30e6ac2238220ad8b254de4eaa3a2",
+  "issuerAyHex": "1e1de8a908826c3f9ac2e0ceee929ecd0caf3b99b3ef24523aaab796a6f733c4"
+}
