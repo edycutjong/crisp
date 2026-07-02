@@ -6,7 +6,8 @@
 
   <p><strong>✅ Real Groth16 (BN254) proof verified on Stellar testnet.</strong><br/>
   Reproduce with <code>npm run prove:demo</code> — oracle <code>CDXROOACFGK7FIOMNRO22O25O5YIMSHA3DKEIQXUUWHR74QGVGKXXSOY</code>; a fresh snarkjs proof makes <code>attest_reserves</code> return true on-chain, and tampered inputs are rejected.<br/>
-  <em>Honest status: the hosted web app is a demo sandbox (local crypto simulations for UX); the load-bearing ZK is the prove:demo pipeline plus the deployed contract.</em></p>
+  <strong>Don&rsquo;t trust us — verify it in your browser:</strong> click <strong>&ldquo;Verify a real proof on-chain&rdquo;</strong> on the <a href="https://crisp.edycu.dev">live site</a> (no wallet needed) — a read-only Soroban call returns <code>true</code> for a real proof and <code>false</code> for tampered inputs.<br/>
+  <em>Honest status: the interactive console uses local crypto simulations for UX; the load-bearing ZK is that deployed oracle plus <code>npm run prove:demo</code> — both now witnessable from the site itself.</em></p>
 
   <br/>
 
