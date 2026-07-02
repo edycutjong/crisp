@@ -400,7 +400,7 @@ export default function Home() {
             </Link>
           </div>
           &copy; 2026 Crisp solvency project. Built for the Stellar Hacks:
-          Real-World ZK Hackathon.
+          Real-World ZK Hackathon. · v{process.env.NEXT_PUBLIC_APP_VERSION}
         </div>
       </footer>
     </div>
