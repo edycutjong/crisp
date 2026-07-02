@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0](../../compare/v1.5.0...v1.6.0) (2026-07-02)
+
+### 🚀 Features
+
+- **seo:** robots + sitemap, security headers (9835fdc)
+
 ## [1.5.0](../../compare/v1.4.0...v1.5.0) (2026-07-01)
 
 ### 🚀 Features
